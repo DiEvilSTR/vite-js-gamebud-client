@@ -1,4 +1,3 @@
-import React from 'react'
 import './header.css'
 import gamebudLogoSrc from '/src/assets/brand/gamebud.svg'
 
