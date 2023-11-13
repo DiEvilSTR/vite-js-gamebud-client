@@ -2,9 +2,9 @@ import { Navbar, Footer } from '/src/common'
 import { Header } from './components'
 import './style.css'
 
-const Main = () => {
+const Signin = () => {
     return (
-        <div className="Main">
+        <div className="Signin">
             <div className="gradient__bg">
                 <Navbar />
                 <Header />
@@ -14,4 +14,4 @@ const Main = () => {
     )
 }
 
-export default Main
+export default Signin
