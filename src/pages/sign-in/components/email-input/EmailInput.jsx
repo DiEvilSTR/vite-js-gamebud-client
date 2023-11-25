@@ -1,6 +1,6 @@
 import "./style.css";
 
-function EmailInput({ ...props }) {
+export function EmailInput({ ...props }) {
     return (
         <input
             type="email"
@@ -9,5 +9,3 @@ function EmailInput({ ...props }) {
         />
     );
 }
-
-export default EmailInput;

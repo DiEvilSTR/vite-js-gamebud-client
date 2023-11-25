@@ -1,7 +1,7 @@
 import './style.css'
 import gamebudLogoSrc from '/src/assets/brand/gamebud.svg'
 
-const Header = () => {
+export function Header() {
   return (
     <div className='gamebud__header section__padding' id='home'>
       <div className='gamebud__header-content'>
@@ -22,5 +22,3 @@ const Header = () => {
     </div>
   )
 }
-
-export default Header

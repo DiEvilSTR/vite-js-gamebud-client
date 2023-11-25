@@ -4,16 +4,18 @@ import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import logo from '/src/assets/brand/logo.svg'
 import './navbar.css'
 
-const Menu = () => (
-  <>
-    <p><a href="#myprofile">My profile</a></p>
-    <p><a href="#fgamebud">Find GameBud</a></p>
-    <p><a href="#likes">Likes</a></p>
-    <p><a href="#matches">Matches</a></p>
-  </>
-)
+function Menu() {
+  return (
+    <>
+      <p><a href="#myprofile">My profile</a></p>
+      <p><a href="#fgamebud">Find GameBud</a></p>
+      <p><a href="#likes">Likes</a></p>
+      <p><a href="#matches">Matches</a></p>
+    </>
+  );
+}
 
-const Navbar = () => {
+export function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
@@ -48,7 +50,5 @@ const Navbar = () => {
         )}
       </div>
     </div>
-  )
+  );
 }
-
-export default Navbar

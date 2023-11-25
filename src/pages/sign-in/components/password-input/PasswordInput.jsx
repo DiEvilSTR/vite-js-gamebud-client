@@ -3,7 +3,7 @@ import eyeOpen from '/src/assets/images/eye-open.png';
 import eyeClose from '/src/assets/images/eye-close.png';
 import './style.css';
 
-function PasswordInput({ ...props }) {
+export function PasswordInput({ ...props }) {
   const [type, setType] = useState('password');
   const [img, setImg] = useState(eyeOpen);
 
@@ -32,5 +32,3 @@ function PasswordInput({ ...props }) {
     </div>
   );
 }
-
-export default PasswordInput;

@@ -1,1 +1,1 @@
-export { default as RouteComponent } from './routes-manager/RouteComponent';
+export * from './routes-manager/RouteComponent';

@@ -3,15 +3,9 @@ import './App.css'
 
 import { RouteComponent } from '/src/setup';
 
-function App() {
+export function App() {
   return (
-    <AuthProvider authType = {'cookie'}
-                  authName={'_auth'}
-                  cookieDomain={window.location.hostname}
-                  cookieSecure={window.location.protocol === "https:"}>
+
         <RouteComponent />
-    </AuthProvider>
   );
 }
-
-export default App;

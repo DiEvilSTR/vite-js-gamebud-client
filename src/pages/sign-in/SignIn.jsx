@@ -2,7 +2,7 @@ import { Navbar, Footer } from '/src/common'
 import { Header } from './components'
 import './style.css'
 
-const Signin = () => {
+export function SignIn () {
     return (
         <div className="Signin">
             <div className="gradient__bg">
@@ -13,5 +13,3 @@ const Signin = () => {
         </div>
     )
 }
-
-export default Signin
