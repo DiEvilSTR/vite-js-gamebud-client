@@ -1,17 +1,16 @@
+import { AuthProvider } from 'react-auth-kit';
 import './App.css'
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main } from '/src/pages';
-import { SignIn } from '/src/pages';
+import { RouteComponent } from '/src/setup';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/sign-in" element={<SignIn />} />
-      </Routes>
-    </Router>
+    <AuthProvider authType = {'cookie'}
+                  authName={'_auth'}
+                  cookieDomain={window.location.hostname}
+                  cookieSecure={window.location.protocol === "https:"}>
+        <RouteComponent />
+    </AuthProvider>
   );
 }
 
