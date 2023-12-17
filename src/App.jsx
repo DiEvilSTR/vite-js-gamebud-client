@@ -1,9 +1,16 @@
-import './App.css'
+import { StrictMode } from 'react';
 
-import { RouteComponent } from '/src/setup';
+import { AuthProvider } from './components';
+import { Router } from './Router';
+
+import './App.css';
 
 export function App() {
   return (
-    <RouteComponent />
+    <StrictMode>
+      <AuthProvider>
+        <Router />
+      </AuthProvider>
+    </StrictMode>
   );
 }
