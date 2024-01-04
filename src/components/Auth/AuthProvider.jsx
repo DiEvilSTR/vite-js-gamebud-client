@@ -5,13 +5,9 @@ import { HTTP_METHOD, assertNever, request } from '/src/utils';
 import { AuthCtx } from './AuthCtx';
 
 const AUTH_ACTION = {
-  getAuthToken: 'GET_AUTH_TOKEN',
-  getAuthTokenSuccess: 'GET_AUTH_TOKEN_SUCCESS',
-  getAuthTokenError: 'GET_AUTH_TOKEN_ERROR',
-
-  getUser: 'GET_USER',
-  getUserSuccess: 'GET_USER_SUCCESS',
-  getUserError: 'GET_USER_ERROR',
+  signIn: 'SIGN_IN',
+  signInSuccess: 'SIGN_IN_SUCCESS',
+  signInError: 'SIGN_IN_ERROR',
 
   signOut: 'SIGN_OUT',
   signOutSuccess: 'SIGN_OUT_SUCCESS',
@@ -23,8 +19,6 @@ const AUTH_ACTION = {
 };
 
 const initialState = {
-  accessToken: null,
-  accessTokenType: null,
   user: null,
   userIsPending: false,
   userError: null,
@@ -32,26 +26,27 @@ const initialState = {
 
 function authReducer(state, action) {
   switch (action.type) {
-    // case AUTH_ACTION.signIn:
-    //   return {
-    //     ...state,
-    //     userIsPending: true,
-    //     userError: null,
-    //   };
-    // case AUTH_ACTION.signInSuccess:
-    //   return {
-    //     ...state,
-    //     user: action.user,
-    //     userIsPending: false,
-    //     userError: null,
-    //   };
-    // case AUTH_ACTION.signInError:
-    //   return {
-    //     ...state,
-    //     user: null,
-    //     userIsPending: false,
-    //     userError: action.error,
-    //   };
+    case AUTH_ACTION.signIn:
+      return {
+        ...state,
+        userIsPending: true,
+        userError: null,
+      };
+    case AUTH_ACTION.signInSuccess:
+      return {
+        ...state,
+        user: action.user,
+        userIsPending: false,
+        userError: null,
+      };
+    case AUTH_ACTION.signInError:
+      return {
+        ...state,
+        user: null,
+        userIsPending: false,
+        userError: action.error,
+      };
+
     case AUTH_ACTION.signOut:
       return {
         ...state,
@@ -71,6 +66,7 @@ function authReducer(state, action) {
         userIsPending: false,
         userError: action.error,
       };
+
     case AUTH_ACTION.signUp:
       return {
         ...state,
@@ -91,6 +87,7 @@ function authReducer(state, action) {
         userIsPending: false,
         userError: action.error,
       };
+
     default:
       assertNever(action.type, authReducer.name);
   }
@@ -100,18 +97,27 @@ export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   const signIn = useCallback(values => {
-    dispatch({ type: AUTH_ACTION.getAuthToken });
+    dispatch({ type: AUTH_ACTION.signIn });
 
-    request('v1/user/login', {
+    request({
+      url: 'v1/user/login',
       method: HTTP_METHOD.post,
       body: JSON.stringify(values),
-    }).then(user => {});
+    })
+      .then(response => response.json())
+      .then(user => dispatch({ type: AUTH_ACTION.signInSuccess, user }))
+      .catch(error => dispatch({ type: AUTH_ACTION.signInError, error }))
   }, []);
 
   const signOut = useCallback(() => {
-    request('v1/user/logout', {
+    dispatch({ type: AUTH_ACTION.signOut });
+
+    request({
+      url: 'v1/user/logout',
       method: HTTP_METHOD.post,
-    });
+    })
+      .then(() => dispatch({ type: AUTH_ACTION.signOutSuccess }))
+      .catch(error => dispatch({ type: AUTH_ACTION.signOutError, error }));
   }, []);
 
   const ctx = useMemo(() => {
@@ -120,9 +126,9 @@ export function AuthProvider({ children }) {
 
       signIn,
       signOut,
-      signUp: console.error,
+      signUp: console.error.bind(null, 'Not implemented'),
     };
-  }, [signIn, signOut]);
+  }, [state, signIn, signOut]);
 
   return <AuthCtx.Provider value={ctx}>{children}</AuthCtx.Provider>;
 }

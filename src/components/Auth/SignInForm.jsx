@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Button, LinkButton } from '/src/components/Button';
+import { Input, INPUT_TYPE } from '/src/components/Input';
 import { Page } from '/src/components/Page';
-import { INPUT_TYPE } from '../Input';
 
 export function SignIn({ goToSignUp, signIn }) {
   const [email, setEmail] = useState('');
@@ -15,9 +15,9 @@ export function SignIn({ goToSignUp, signIn }) {
     <Page>
       <h1>Sign In</h1>
 
-      <input name="email" onChange={setEmail} type={INPUT_TYPE.email} value={email} />
+      <Input name="email" onChange={setEmail} type={INPUT_TYPE.email} value={email} />
 
-      <input name="password" onChange={setPassword} type={INPUT_TYPE.password} value={password} />
+      <Input name="password" onChange={setPassword} type={INPUT_TYPE.password} value={password} />
 
       <Button onClick={sendSignInRequest}>Sign In</Button>
 
