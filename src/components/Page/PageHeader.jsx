@@ -1,15 +1,53 @@
-import './Page.css';
+import { useContext } from 'react';
+
+import { AuthCtx } from '/src/components/Auth/AuthCtx';
+import './PageHeader.css';
+
+import logo from '/src/assets/brand/logo.svg';
+
+function Menu() {
+  return (
+    <>
+      <p>
+        <a className="page__header-nav_item" href="#myprofile">
+          My profile
+        </a>
+      </p>
+      <p>
+        <a className="page__header-nav_item" href="#fgamebud">
+          Find GameBud
+        </a>
+      </p>
+      <p>
+        <a className="page__header-nav_item" href="#likes">
+          Likes
+        </a>
+      </p>
+      <p>
+        <a className="page__header-nav_item" href="#matches">
+          Matches
+        </a>
+      </p>
+    </>
+  );
+}
 
 export function PageHeader() {
-  return <div className="page_header">
-    <div className="page_header-logo">
-        <img src="page_header-logo_img" alt="LOGO" />
-    </div>
+  const { user } = useContext(AuthCtx); // Use the AuthCtx to get the user
 
-    <nav className="page_header-nav">
-        <a className="page_header-nav_item page_header-nav_item--active" href="#">Link 1</a>
-        <a className="page_header-nav_item" href="#">Link 2</a>
-        <a className="page_header-nav_item" href="#">Link 3</a>
-    </nav>
-  </div>;
+  return (
+    <div className="page__header">
+      <div className="page__header-links">
+        <div className="page__header-links_logo">
+          <img src={logo} alt="logo" />
+        </div>
+
+        {user && (
+          <nav className="page__header-links_container">
+            <Menu />
+          </nav>
+        )}
+      </div>
+    </div>
+  );
 }
