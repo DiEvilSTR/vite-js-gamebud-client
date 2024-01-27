@@ -1,0 +1,28 @@
+.page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 6rem;
+}
+
+.page__header-links {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.gpage__header-links_logo {
+  margin-right: 2rem;
+}
+
+.page__header-links_logo img {
+  width: 100px;
+  height: 25px;
+}
+
+@media screen and (max-width: 550px) {
+  .page__header {
+      padding: 2rem;
+  }
+}

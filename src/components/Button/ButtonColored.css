@@ -1,0 +1,20 @@
+.btn-colored {
+  width: 100px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0.5rem;
+  color: #fff;
+  background: #FF4820;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  border: 2px solid #FF4820;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-colored:hover {
+  background-color: #FF6347;
+}

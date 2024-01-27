@@ -1,3 +1,3 @@
-export * from './Button';
+export * from './ButtonColored';
+export * from './ButtonOutlined';
 export * from './RawButton';
-export * from './LinkButton';

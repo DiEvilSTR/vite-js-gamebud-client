@@ -1,13 +1,10 @@
-import { PageHeader } from './PageHeader';
 import { PageFooter } from './PageFooter';
 import './Page.css';
 
-export function Page({ children, leftSidebar }) {
+export function Page({ header, children, leftSidebar }) {
   return (
     <div className="page">
-      <header>
-        <PageHeader />
-      </header>
+      <header>{header && <aside className="page-header">{header}</aside>}</header>
 
       <main className="page-main">
         {leftSidebar && <aside className="page-left_sidebar">{leftSidebar}</aside>}

@@ -1,0 +1,80 @@
+.not-found-page__hero {
+  display: flex;
+}
+
+.not-found-page__hero-content {
+  width: 100%;
+
+  text-align: center;
+
+  margin-right: 5rem;
+}
+
+.not-found-page__hero-content h1 {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 62px;
+  line-height: 75px;
+  color: var(--color-text);
+}
+
+.not-found-page__hero-content p {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 27px;
+  color: var(--color-text);
+  margin-top: 1rem;
+}
+
+.not-found-page__hero-content button {
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.not-found-page__hero-content button:hover {
+  background-color: var(--color-text);
+}
+
+@media screen and (max-width: 1050px) {
+  .not-found-page__hero {
+    flex-direction: column;
+    width: 100%;
+}
+
+  .not-found-page__hero-content {
+      margin: 0 0 3rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .not-found-page__hero-content h1 {
+    font-size: 48px;
+    line-height: 60px;
+  }
+
+  .not-found-page__hero-content p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .not-found-page__hero-content h1 {
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .not-found-page__hero-content p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

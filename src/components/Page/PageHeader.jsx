@@ -1,5 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 
+import { ButtonColored, ButtonOutlined } from '/src/components/Button';
 import { AuthCtx } from '/src/components/Auth/AuthCtx';
 import './PageHeader.css';
 
@@ -33,6 +35,7 @@ function Menu() {
 }
 
 export function PageHeader() {
+  const [toggleMenu, setToggleMenu] = useState(false);
   const { user } = useContext(AuthCtx); // Use the AuthCtx to get the user
 
   return (
@@ -43,11 +46,56 @@ export function PageHeader() {
         </div>
 
         {user && (
-          <nav className="page__header-links_container">
+          <div className="page__header-links_container">
             <Menu />
-          </nav>
+          </div>
+        )}
+        {user ? (
+          <div className="page__header-sign">
+            <ButtonColored to="/logout">Logout</ButtonColored>
+          </div>
+        ) : (
+          <div className="page__header-sign">
+            <ButtonOutlined to="/sign-in">Sign in</ButtonOutlined>
+            <ButtonColored to="/sign-up">Sign up</ButtonColored>
+          </div>
         )}
       </div>
+      {/* Mobile menu */
+      /* If the user is logged in, show the menu, otherwise show the sign in/up buttons */}
+      {user ? (
+        <div className="page__header-menu">
+          {toggleMenu ? (
+            <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
+          ) : (
+            <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />
+          )}
+          {toggleMenu && (
+            <div className="page__header-menu_container scale-up-center">
+              <div className="page__header-menu_container-links">
+                <Menu />
+              </div>
+              <div className="page__header-menu_container-links-sign">
+                <ButtonColored to="/logout">Logout</ButtonColored>
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="page__header-menu-unauthorized">
+          {toggleMenu ? (
+            <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
+          ) : (
+            <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />
+          )}
+          {toggleMenu && (
+            <div className="page__header-menu_container scale-up-center">
+              <ButtonOutlined to="/sign-in">Sign in</ButtonOutlined>
+              <ButtonColored to="/sign-up">Sign up</ButtonColored>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

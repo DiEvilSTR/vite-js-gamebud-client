@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 6rem;
+  padding: 1rem 6rem;
 }
 
 .page__header-links {
@@ -30,6 +30,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-left: auto;
 }
 
 .page__header-links_container p,
@@ -46,22 +47,8 @@
   cursor: pointer;
 }
 
-.page__header-sign button,
-.page__header-menu_container button {
-  padding: 0.5rem 1rem;
-  color: #fff;
-  background: #FF4820;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 25px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.page__header-menu {
+.page__header-menu,
+.page__header-menu-unauthorized {
   margin-left: 1rem;
 
   display: none;
@@ -130,4 +117,8 @@
   .page__header-menu_container-links-sign {
       display: block;
   }
+
+  .page__header-menu-unauthorized {
+    display: flex;
+}
 }
