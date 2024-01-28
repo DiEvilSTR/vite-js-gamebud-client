@@ -1,0 +1,17 @@
+.modal_overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+
+  background-color: var(--color-bg-trans);
+  padding: 1rem;
+}

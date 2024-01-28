@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react';
+
 import { ButtonColored, ButtonOutlined } from '/src/components/Button';
-import { INPUT_TYPE, Input } from '/src/components/Input';
-import { Page } from '/src/components/Page';
-import { PageHeaderAuth } from '/src/components/Page/PageHeaderAuth';
+import { Input, INPUT_TYPE } from '/src/components/Input';
+
+import { AuthPage } from './AuthPage';
 
 export function SignUp({ goToSignIn, signUp }) {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ export function SignUp({ goToSignIn, signUp }) {
   }, [email, password, signUp]);
 
   return (
-    <Page header={<PageHeaderAuth />}>
+    <AuthPage>
       <h1>Sign Up</h1>
 
       <Input name="email" onChange={setEmail} type={INPUT_TYPE.email} value={email} />
@@ -23,6 +24,6 @@ export function SignUp({ goToSignIn, signUp }) {
       <ButtonOutlined onClick={sendSignUpRequest}>Sign Up</ButtonOutlined>
 
       <ButtonColored onClick={goToSignIn}>Sign In</ButtonColored>
-    </Page>
+    </AuthPage>
   );
 }

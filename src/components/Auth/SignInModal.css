@@ -1,0 +1,14 @@
+.sign_in_modal-field {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: #fff;
+  outline: none;
+}
+
+.sign_in_modal-field + .sign_in_modal-field {
+  padding-top: 0.5rem;
+}

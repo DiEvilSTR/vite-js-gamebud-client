@@ -1,7 +1,8 @@
+import './RawButton.css';
+
 import classnames from 'classnames';
 
 import { BUTTON_TYPE } from './constants';
-import './RawButton.css';
 
 export function RawButton({ className: _className, type: _type, ...restProps }) {
   const className = classnames('raw-btn', _className);

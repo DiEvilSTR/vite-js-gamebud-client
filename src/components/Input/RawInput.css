@@ -1,1 +1,13 @@
-/* .raw-input {} */
+.raw-input {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  flex: 2;
+  background: var(--color-footer);
+  border: 2px solid var(--color-footer);
+  padding: 0 1rem;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}

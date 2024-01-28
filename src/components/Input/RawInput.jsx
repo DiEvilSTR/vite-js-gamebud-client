@@ -1,7 +1,7 @@
+import './RawInput.css';
+
 import classnames from 'classnames';
 import { useCallback } from 'react';
-
-import './RawInput.css';
 
 export function RawInput({ className: _className, name, onChange, value, ...restProps }) {
   const className = classnames('raw-input', _className);
