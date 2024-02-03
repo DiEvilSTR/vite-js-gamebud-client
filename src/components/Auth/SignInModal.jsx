@@ -14,52 +14,87 @@ export function SignInModal({ onClose, opened }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [showModal, setShowModal] = useState(opened);
+  const [closing, setClosing] = useState(false);
+
   const sendSignInRequest = useCallback(() => {
     signIn({ email, password });
   }, [email, password, signIn]);
 
   useEffect(() => {
-    if (user && opened && onClose) {
-      onClose();
+    if (!opened) {
+      setClosing(true);
+      const timer = setTimeout(() => setShowModal(false), 500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowModal(true);
+      setClosing(false);
     }
-  }, [onClose, opened, user]);
+  }, [opened]);
+
+  useEffect(() => {
+    if (user && opened && onClose) {
+      setClosing(true);
+      const timer = setTimeout(() => {
+        onClose();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [user, opened, onClose]);
 
   return (
-    <ModalOverlay opened={opened}>
-      <Modal
-        header="Sign In"
-        footer={
-          <div className="sign_in_modal-footer">
-            <ButtonOutlined onClick={sendSignInRequest} pending={userIsPending}>
-              Sign In
-            </ButtonOutlined>
+    <ModalOverlay opened={showModal}>
+      <div className={`modal ${closing ? 'modal-closing' : ''}`}>
+        <Modal
+          header={
+            <div className="sign_in_modal-header">
+              <h2 className="gradient__text">Sign In</h2>
+            </div>
+          }
+          footer={
+            <div className="sign_in_modal-footer">
+              <ButtonOutlined onClick={sendSignInRequest} pending={userIsPending}>
+                Sign In
+              </ButtonOutlined>
 
-            {onClose && <ButtonColored onClick={onClose}>Close</ButtonColored>}
+              {onClose && <ButtonColored onClick={onClose}>Close</ButtonColored>}
+            </div>
+          }
+        >
+          <div className="sign_in_modal-field">
+            <Input
+              className="input-height"
+              label="Email"
+              name="email"
+              onChange={setEmail}
+              readOnly={userIsPending}
+              type={INPUT_TYPE.email}
+              value={email}
+            />
           </div>
-        }
-      >
-        <div className="sign_in_modal-field">
-          <Input
-            label="Email"
-            name="email"
-            onChange={setEmail}
-            readOnly={userIsPending}
-            type={INPUT_TYPE.email}
-            value={email}
-          />
-        </div>
 
-        <div className="sign_in_modal-field">
-          <Input
-            label="Password"
-            name="password"
-            onChange={setPassword}
-            readOnly={userIsPending}
-            type={INPUT_TYPE.password}
-            value={password}
-          />
-        </div>
-      </Modal>
+          <div className="sign_in_modal-field">
+            <Input
+              className="input-height"
+              label="Password"
+              name="password"
+              onChange={setPassword}
+              readOnly={userIsPending}
+              type={INPUT_TYPE.password}
+              value={password}
+            />
+          </div>
+
+          <div className="sign_in_modal-switch">
+            {/* <p>
+            Forgot your password? <a href="#">Reset it</a>
+          </p> */}
+            <p>
+              Don’t have an account? <a href="#">Sign up</a>
+            </p>
+          </div>
+        </Modal>
+      </div>
     </ModalOverlay>
   );
 }

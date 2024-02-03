@@ -5,6 +5,11 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  animation: slideInDown 0.5s ease-out forwards; /* Adjust the duration and timing function */
+}
+
+.modal-closing {
+  animation: slideOutUp 0.5s ease forwards;
 }
 
 .modal-header {
@@ -33,7 +38,7 @@
   align-items: center;
   background-color: var(--color-bg);
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 1rem;
   border: 1px solid #123569;
   border-radius: 0 0 0.5rem 0.5rem;
@@ -41,4 +46,26 @@
 
 .modal-header + .modal-footer {
   border-top-width: 0;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }

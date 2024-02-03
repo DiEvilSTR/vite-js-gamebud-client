@@ -1,3 +1,11 @@
+.sign_in_modal-header {
+  display: flex;
+  justify-content: center; /* Align buttons in the center */
+  font-family: var(--font-family);
+  font-size: 20px;
+  line-height: 40px;
+}
+
 .sign_in_modal-field {
   display: flex;
   flex-direction: column;
@@ -11,4 +19,22 @@
 
 .sign_in_modal-field + .sign_in_modal-field {
   padding-top: 0.5rem;
+}
+
+.sign_in_modal-switch {
+  display: flex;
+  padding-top: 0.5rem;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 28px;
+  color: #fff;
+}
+
+.sign_in_modal-switch a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.input-height {
+  height: 42px; /* Default height, can be overridden */
 }

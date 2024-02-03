@@ -3,17 +3,21 @@
   flex-direction: column;
 }
 
-.input {
-  display: flex;
-  flex-direction: column;
-  height: 60px;
-}
-
 .input-label {
-  display: block;
   margin-bottom: 0.5rem;
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 20px;
   color: #fff;
+}
+
+.input {
+  display: block;
+  border-radius: 5px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #fff;
+  outline: none;
 }

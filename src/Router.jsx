@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { GameBudPage, HomePage, NotFoundPage, SignPage } from './containers';
+import { GameBudPage, HomePage, NotFoundPage } from './containers';
 
 export function Router() {
   return (
@@ -8,7 +8,6 @@ export function Router() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/gamebuds" element={<GameBudPage />} />
-        <Route path="/sign" element={<SignPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
