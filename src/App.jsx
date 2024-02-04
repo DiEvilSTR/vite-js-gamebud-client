@@ -1,16 +1,25 @@
-import './App.css'
+import './App.css';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main } from '/src/pages';
+import { StrictMode } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-function App() {
+import { AuthProvider, OverlayContainer, OverlayProvider } from './components';
+import { Router } from './Router';
+
+const queryClient = new QueryClient();
+
+export function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-      </Routes>
-    </Router>
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <OverlayProvider>
+            <Router />
+
+            <OverlayContainer />
+          </OverlayProvider>
+        </AuthProvider>
+      </QueryClientProvider>
+    </StrictMode>
   );
 }
-
-export default App;

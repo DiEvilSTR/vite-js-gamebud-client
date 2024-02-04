@@ -1,0 +1,15 @@
+.matches_page__hero {
+  display: flex;
+  height: 100vh; /* Adjust height as needed */
+}
+
+/* Ensure MatchesList and ChatWindow components take appropriate space */
+@media (min-width: 768px) { /* Adjust breakpoint as needed */
+  .matches_page__hero > :first-child {
+    flex: 1; /* MatchesList */
+  }
+
+  .matches_page__hero > :last-child {
+    flex: 2; /* ChatWindow */
+  }
+}
