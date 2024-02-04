@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useBool } from '/src/hooks';
 
 import { AuthCtx } from './AuthCtx';
-import { SignIn } from './SignInForm';
+import { SignInFormWithModal } from './SignInFormWithModal';
 import { SignUp } from './SignUpForm';
 
 export function AuthRequired({ children }) {
@@ -15,7 +15,7 @@ export function AuthRequired({ children }) {
     return shouldDisplaySignUpForm ? (
       <SignUp goToSignIn={showSignInForm} signUp={signUp} />
     ) : (
-      <SignIn goToSignUp={showSignUpForm} signIn={signIn} />
+      <SignInFormWithModal goToSignUp={showSignUpForm} signIn={signIn} />
     );
   }
 

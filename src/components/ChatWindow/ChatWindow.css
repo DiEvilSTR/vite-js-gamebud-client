@@ -1,0 +1,19 @@
+.chatWindow {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+  border-left: 1px solid #ccc; /* Separator from matches list */
+}
+
+.messageList {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f0f0f0; /* Placeholder color, customize as needed */
+  border-radius: 5px;
+}

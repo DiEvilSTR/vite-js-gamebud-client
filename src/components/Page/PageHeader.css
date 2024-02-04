@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 6rem;
+  min-height: 93px;
 }
 
 .page__header-links {
@@ -95,17 +96,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
-  .page__header {
-      padding: 2rem 4rem;
-  }
-}
-
 @media screen and (max-width: 550px) {
-  .page__header {
-      padding: 2rem;
-  }
-
   .page__header-sign {
       display: none;
   }

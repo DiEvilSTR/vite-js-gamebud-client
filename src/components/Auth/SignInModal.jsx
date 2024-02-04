@@ -8,7 +8,7 @@ import { Modal, ModalOverlay } from '/src/components/Modal';
 
 import { AuthCtx } from './AuthCtx';
 
-export function SignInModal({ onClose, opened }) {
+export function SignInModal({ onClose, opened, goToSignUp }) {
   const { user, userIsPending, signIn } = useContext(AuthCtx);
 
   const [email, setEmail] = useState('');
@@ -42,8 +42,15 @@ export function SignInModal({ onClose, opened }) {
     }
   }, [user, opened, onClose]);
 
+  useEffect(() => {
+    if (!opened) {
+      setEmail('');
+      setPassword('');
+    }
+  }, [opened]);
+
   return (
-    <ModalOverlay opened={showModal}>
+    <ModalOverlay opened={showModal} onClose={onClose}>
       <div className={`modal ${closing ? 'modal-closing' : ''}`}>
         <Modal
           header={
@@ -89,9 +96,12 @@ export function SignInModal({ onClose, opened }) {
             {/* <p>
             Forgot your password? <a href="#">Reset it</a>
           </p> */}
-            <p>
-              Don’t have an account? <a href="#">Sign up</a>
-            </p>
+
+            {goToSignUp && (
+              <p>
+                Don’t have an account? <a onClick={goToSignUp}>Sign up</a>
+              </p>
+            )}
           </div>
         </Modal>
       </div>

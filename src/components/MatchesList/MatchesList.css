@@ -1,0 +1,19 @@
+.matchesList {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.matchItem {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.matchItem:hover {
+  background-color: #f0f0f0; /* Placeholder color, customize as needed */
+}

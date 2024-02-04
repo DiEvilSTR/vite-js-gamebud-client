@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useReducer } from 'react';
 
-import { HTTP_METHOD, assertNever, request } from '/src/utils';
+import { assertNever, HTTP_METHOD, request } from '/src/utils';
 
 import { AuthCtx } from './AuthCtx';
 
@@ -106,7 +106,7 @@ export function AuthProvider({ children }) {
     })
       .then(response => response.json())
       .then(user => dispatch({ type: AUTH_ACTION.signInSuccess, user }))
-      .catch(error => dispatch({ type: AUTH_ACTION.signInError, error }))
+      .catch(error => dispatch({ type: AUTH_ACTION.signInError, error }));
   }, []);
 
   const signOut = useCallback(() => {

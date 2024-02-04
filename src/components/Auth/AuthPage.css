@@ -17,6 +17,11 @@
 
   /* global 92%+ browsers support */
   background:radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  background-image: url(/src/assets/brand/gamebud.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .auth_page-header {
@@ -24,6 +29,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 6rem;
+  min-height: 93px;
 }
 
 .auth_page-main {
@@ -33,4 +39,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
