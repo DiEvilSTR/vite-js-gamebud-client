@@ -31,7 +31,7 @@ function Menu() {
       </p>
 
       <p>
-        <a className="page__header-nav_item" href="#matches">
+        <a className="page__header-nav_item" href="/matches">
           Matches
         </a>
       </p>

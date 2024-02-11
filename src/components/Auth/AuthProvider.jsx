@@ -8,11 +8,9 @@ const AUTH_ACTION = {
   signIn: 'SIGN_IN',
   signInSuccess: 'SIGN_IN_SUCCESS',
   signInError: 'SIGN_IN_ERROR',
-
   signOut: 'SIGN_OUT',
   signOutSuccess: 'SIGN_OUT_SUCCESS',
   signOutError: 'SIGN_OUT_ERROR',
-
   signUp: 'SIGN_UP',
   signUpSuccess: 'SIGN_UP_SUCCESS',
   signUpError: 'SIGN_UP_ERROR',
@@ -104,9 +102,8 @@ export function AuthProvider({ children }) {
       method: HTTP_METHOD.post,
       body: JSON.stringify(values),
     })
-      .then(response => response.json())
       .then(user => dispatch({ type: AUTH_ACTION.signInSuccess, user }))
-      .catch(error => dispatch({ type: AUTH_ACTION.signInError, error }));
+      .catch(error => dispatch({ type: AUTH_ACTION.signInError, error: error.response ? error.response.data : error }));
   }, []);
 
   const signOut = useCallback(() => {
@@ -117,13 +114,14 @@ export function AuthProvider({ children }) {
       method: HTTP_METHOD.post,
     })
       .then(() => dispatch({ type: AUTH_ACTION.signOutSuccess }))
-      .catch(error => dispatch({ type: AUTH_ACTION.signOutError, error }));
+      .catch(error =>
+        dispatch({ type: AUTH_ACTION.signOutError, error: error.response ? error.response.data : error })
+      );
   }, []);
 
   const ctx = useMemo(() => {
     return {
       ...state,
-
       signIn,
       signOut,
       signUp: console.error.bind(null, 'Not implemented'),
