@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useReducer } from 'react';
 
-import { assertNever, HTTP_METHOD, request } from '/src/utils';
+import { assertNever, authRequest, HTTP_METHOD, request } from '/src/utils';
 
 import { AuthCtx } from './AuthCtx';
 
@@ -97,7 +97,7 @@ export function AuthProvider({ children }) {
   const signIn = useCallback(values => {
     dispatch({ type: AUTH_ACTION.signIn });
 
-    request({
+    authRequest({
       url: 'v1/user/login',
       method: HTTP_METHOD.post,
       body: JSON.stringify(values),
@@ -109,7 +109,7 @@ export function AuthProvider({ children }) {
   const signOut = useCallback(() => {
     dispatch({ type: AUTH_ACTION.signOut });
 
-    request({
+    authRequest({
       url: 'v1/user/logout',
       method: HTTP_METHOD.post,
     })

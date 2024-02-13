@@ -1,5 +1,7 @@
 import './PageFooter.css';
 
+import { Link } from 'react-router-dom';
+
 import logo from '/src/assets/brand/logo.svg';
 
 export function PageFooter() {
@@ -17,26 +19,26 @@ export function PageFooter() {
             <h4>Company</h4>
 
             <p>
-              <a href="#home">About us</a>
+              <Link to="/about">About us</Link>
             </p>
 
             <p>
-              <a href="#home">Homepage</a>
+              <Link to="/">Homepage</Link>
             </p>
           </div>
           <div className="page__footer-links_div">
             <h4>Get in touch</h4>
 
             <p>
-              <a href="#home">Facebook</a>
+              <Link to="/">Facebook</Link>
             </p>
 
             <p>
-              <a href="#home">Instagram</a>
+              <Link to="/">Instagram</Link>
             </p>
 
             <p>
-              <a href="#home">GitHub</a>
+              <Link to="/">GitHub</Link>
             </p>
           </div>
         </div>

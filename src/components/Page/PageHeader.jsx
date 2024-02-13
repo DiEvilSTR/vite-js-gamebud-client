@@ -13,27 +13,27 @@ function Menu() {
   return (
     <>
       <p>
-        <a className="page__header-nav_item" href="#myprofile">
+        <Link className="page__header-nav_item" to="/">
           My profile
-        </a>
+        </Link>
       </p>
 
       <p>
-        <a className="page__header-nav_item" href="#fgamebud">
+        <Link className="page__header-nav_item" to="/">
           Find GameBud
-        </a>
+        </Link>
       </p>
 
       <p>
-        <a className="page__header-nav_item" href="#likes">
+        <Link className="page__header-nav_item" to="/">
           Likes
-        </a>
+        </Link>
       </p>
 
       <p>
-        <a className="page__header-nav_item" href="/matches">
+        <Link className="page__header-nav_item" to="/matches">
           Matches
-        </a>
+        </Link>
       </p>
     </>
   );

@@ -16,7 +16,15 @@ export const HTTP_METHOD = {
   patch: 'PATCH',
 };
 
-export function request({ contentType: _contentType, url: _url, headers: _headers, method: _method, ...options }) {
+// TODO: Add auth request with credenetials set to true
+export function request({
+  contentType: _contentType,
+  url: _url,
+  headers: _headers,
+  method: _method,
+  withCredentials,
+  ...options
+}) {
   const contentType = _contentType || HTTP_CONTENT_TYPE.json;
   const headers = {
     'Content-Type': contentType,
@@ -29,6 +37,7 @@ export function request({ contentType: _contentType, url: _url, headers: _header
     url,
     method,
     headers,
+    withCredentials,
     // Axios 'data' key is used for the request body for methods like POST, PUT
     data: method !== HTTP_METHOD.get && method !== HTTP_METHOD.delete ? options.body : null,
     // Axios uses 'params' for query string parameters in GET requests
