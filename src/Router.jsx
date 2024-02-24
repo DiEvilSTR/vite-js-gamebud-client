@@ -8,7 +8,7 @@ export function Router() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/gamebuds" element={<GameBudPage />} />
-        <Route path="/matches" element={<MatchesPage />} />
+        <Route path="/matches/*" element={<MatchesPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -1,10 +1,11 @@
-import { useCallback, useMemo, useReducer } from 'react';
+import { useCallback, useEffect, useMemo, useReducer } from 'react';
 
-import { assertNever, authRequest, HTTP_METHOD, request } from '/src/utils';
+import { assertNever, authRequest, HTTP_METHOD } from '/src/utils';
 
 import { AuthCtx } from './AuthCtx';
 
 const AUTH_ACTION = {
+  checkSession: 'CHECK_SESSION',
   signIn: 'SIGN_IN',
   signInSuccess: 'SIGN_IN_SUCCESS',
   signInError: 'SIGN_IN_ERROR',
@@ -94,6 +95,7 @@ function authReducer(state, action) {
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  // Function to sign in
   const signIn = useCallback(values => {
     dispatch({ type: AUTH_ACTION.signIn });
 
@@ -106,6 +108,7 @@ export function AuthProvider({ children }) {
       .catch(error => dispatch({ type: AUTH_ACTION.signInError, error: error.response ? error.response.data : error }));
   }, []);
 
+  // Function to sign out
   const signOut = useCallback(() => {
     dispatch({ type: AUTH_ACTION.signOut });
 
@@ -119,6 +122,33 @@ export function AuthProvider({ children }) {
       );
   }, []);
 
+  // Function to check user session
+  const checkUserSession = useCallback(() => {
+    authRequest({
+      url: 'v1/user/me',
+      method: HTTP_METHOD.get,
+    })
+      .then(user => {
+        // User is authenticated, update state
+        dispatch({ type: AUTH_ACTION.signInSuccess, user });
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 401) {
+          // Unauthorized, clear user state
+          dispatch({ type: AUTH_ACTION.signOutSuccess });
+        } else {
+          // Other errors
+          console.error('Error checking user session', error);
+        }
+      });
+  }, []);
+
+  // Check user session on component mount
+  useEffect(() => {
+    checkUserSession();
+  }, [checkUserSession]);
+
+  // Memoize the context value to avoid unnecessary re-renders
   const ctx = useMemo(() => {
     return {
       ...state,

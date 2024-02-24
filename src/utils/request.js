@@ -16,7 +16,6 @@ export const HTTP_METHOD = {
   patch: 'PATCH',
 };
 
-// TODO: Add auth request with credenetials set to true
 export function request({
   contentType: _contentType,
   url: _url,

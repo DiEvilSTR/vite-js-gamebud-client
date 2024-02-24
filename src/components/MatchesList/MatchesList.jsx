@@ -1,12 +1,14 @@
-import './MatchesList.css'; // Assuming CSS file is in the same directory
+import './MatchesList.css';
 
 import { useQuery } from 'react-query';
 
-import { HTTP_METHOD, request } from '/src/utils'; // Import the updated request utility and HTTP_METHOD
+import { authRequest, HTTP_METHOD } from '/src/utils';
 
+// Function to fetch matches
 const fetchMatches = async () => {
-  const data = await request({
-    url: 'bud_finder/matches/list',
+  // Using authRequest to include credentials
+  const data = await authRequest({
+    url: 'v1/bud_finder/matches/list',
     method: HTTP_METHOD.get,
   });
   return data;
@@ -16,24 +18,21 @@ export function MatchesList() {
   const { isLoading, error, data } = useQuery('matches', fetchMatches);
 
   if (isLoading) return 'Loading...';
-  if (error) return 'An error has occurred: ' + error.message;
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <div className="matchesList">
-      {data.map(({ id, buds }) =>
-        buds.map(bud => (
-          <div key={bud.uuid} className="matchItem" onClick={() => openBudProfile(bud.uuid)}>
-            {/* Displaying the nickname of the bud, clickable to open the bud's profile */}
-            {bud.nickname}
-          </div>
-        ))
-      )}
+      {data.map(match => (
+        <div key={match.id} className="matchItem" onClick={() => openBudProfile(match.bud.uuid)}>
+          {match.bud.nickname}
+        </div>
+      ))}
     </div>
   );
 }
 
-// Function to handle opening a bud's profile, replace with actual implementation
+// Function to handle opening a bud's profile
 function openBudProfile(uuid) {
   console.log(`Open profile for bud with UUID: ${uuid}`);
-  // Implement profile opening logic here
+  // Implement the logic to open the bud's profile here
 }

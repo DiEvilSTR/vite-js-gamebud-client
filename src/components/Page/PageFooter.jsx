@@ -38,7 +38,9 @@ export function PageFooter() {
             </p>
 
             <p>
-              <Link to="/">GitHub</Link>
+              <a href="https://github.com/DiEvilSTR/vite-js-gamebud-client" target="blank">
+                GitHub
+              </a>
             </p>
           </div>
         </div>
